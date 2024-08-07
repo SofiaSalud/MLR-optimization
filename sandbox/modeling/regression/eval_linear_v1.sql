@@ -1,0 +1,140 @@
+SELECT
+  *
+FROM
+  ML.EVALUATE(MODEL `sofia-data-305018.mlr_optimization.linear_reg`,
+(
+SELECT 
+  --# parte medica del servicio
+  --service_id,
+  --case_event_id,
+  --disease_case_id,
+  --related_service_id,
+  service_type,
+  service_type_from_description,
+  --services_created_date,
+  --services_state,
+  cpt,
+  icd,
+  diagnosis,
+  --services_diagnosis_description,
+  --med_note_system,
+  --med_note_motive,
+  services_specification,
+  caseevent_admission_source,
+  caseevent_category,
+  caseevent_class,
+--
+  --
+  --# proveedor 
+  provider_name,
+  provider_network,
+  --provider_contract_category,
+  provider_category_name,
+  --provider_website,
+  --provider_state,
+  --provider_notes,
+  --provider_address1,
+  --provider_address2,
+  provider_address_neighborhood,
+  --provider_address_city,
+  --provider_address_zipcode,
+  --provider_longitude,
+  --provider_latitude,
+  --provider_admin_name1,
+  --provider_admin_name2,
+  --provider_location_municipality,
+  --provider_location_state,
+  --provider_location_city,
+  --
+  --
+  --# informacion del doctor
+  --doctor_specialization,
+  --consult_specialization,
+  doctorfriend_name,
+  --doctor_nickname, 
+  doctor_name,
+  doctor_descriptor, 
+  --doctor_is_primary_care_doctor,
+  --doctor_is_active, 
+  --doctor_is_pediatrics_care_doctor, 
+  --doctor_license_institution, 
+  --doctor_available_on_demand, 
+  --doctor_internal_notes, 
+  --doctor_availability_hours,
+  --doctor_specialization_detail,
+  --doctor_specializations,
+  --doctor_specializationfare_name,
+  --doctor_specialization_name,
+  --doctor_specialization_description,
+  --doctor_specialization_type,
+  --doctor_specialization_is_primary_care,
+  --doctor_address1,
+  --doctor_address2,
+  doctor_neighborhood,
+  --doctor_city,
+  --doctor_zipcode,
+  --doctor_longitude,
+  --doctor_latitude,
+  --doctor_admin_name1,
+  --doctor_admin_name2,
+  --doctor_location_municipality,
+  --doctor_location_state,
+  --doctor_location_city,
+  --
+--
+--
+  --# personales del socio
+  --member_id,
+  member_age_at_subscription,
+  member_gender,
+  member_occupation,
+  --member_nickname,
+  --member_name,
+  --member_birth_country,
+  member_height_cm,
+  member_weight_kg,
+  --member_date_of_birth,
+  --member_birth_country_code,
+  --member_nationality_country_code,
+  --member_is_represented_by_user_id,
+  --member_rfc, 
+  --member_address1,
+  --member_address2,
+  member_address_neighborhood,
+  --member_address_city,
+  --member_address_zipcode,
+  --member_longitude,
+  --member_latitude,
+  --member_admin_name1,
+  --member_admin_name2,
+  --member_location_municipality,
+  --member_location_state,
+  --member_location_city,
+--
+--
+  --# primas
+  --relationship_beneficiary_with_owner,
+  --owner_type,
+  --vc_schema, 
+  ipc_schema,
+  --vertical,
+  is_internal,
+  --is_collective,
+  --product_id,
+  business_group_size,
+  --business_group,
+  --business_name,
+  --
+  --# datos economicos otros como medio de pago
+  --transaction_date_min,
+  --transaction_date_max,
+  array_transaction_type,
+  payout_mode,
+  payin_mode,
+  subtotal,
+
+FROM 
+  `sofia-data-305018.mlr_optimization.base_payments_provider_socios`
+WHERE
+  DATE(transaction_date_max) BETWEEN DATE_SUB('2024-07-01', INTERVAL 1 YEAR) AND DATE_SUB('2024-07-01', INTERVAL 1 DAY)
+))
